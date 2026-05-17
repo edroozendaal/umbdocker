@@ -1,0 +1,28 @@
+services:
+  umbdocker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_CONFIGURATION: Release
+    image: umbdocker:local
+    container_name: umbdocker-dev
+    ports:
+      - "5000:8080"
+    volumes:
+      # Persistent Umbraco data
+      - ./umbraco/Data:/app/umbraco/Data
+      - ./umbraco/Logs:/app/umbraco/Logs
+      - ./umbraco/Models:/app/umbraco/Models
+      # Media files
+      - ./umbraco/media:/app/wwwroot/media
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    restart: unless-stopped
+    networks:
+      - umbdocker-network
+
+networks:
+  umbdocker-network:
+    driver: bridge
