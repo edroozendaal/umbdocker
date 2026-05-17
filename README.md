@@ -1,6 +1,11 @@
 # UmbDocker - Umbraco CMS Docker Project
 
 A containerized Umbraco CMS application built with .NET 10.0 and Docker.
+Some details:
+
+- Umbraco v17 (LTS)
+- Clean starterkit
+- Diplo.GodMode
 
 ## Prerequisites
 
@@ -12,12 +17,14 @@ A containerized Umbraco CMS application built with .NET 10.0 and Docker.
 ### Local Development with Docker Compose
 
 1. **Clone the repository:**
+
    ```bash
    git clone <repository-url>
    cd UmbDocker
    ```
 
 2. **Build and start the application:**
+
    ```bash
    docker-compose up -d
    ```
@@ -27,6 +34,7 @@ A containerized Umbraco CMS application built with .NET 10.0 and Docker.
    - First-time setup: Follow the Umbraco installation wizard
 
 4. **View logs:**
+
    ```bash
    docker-compose logs -f umbdocker
    ```
@@ -91,6 +99,7 @@ cp .env.example .env
 ```
 
 Available environment variables:
+
 - `ASPNETCORE_ENVIRONMENT` - Application environment (Development/Production)
 - `HOST_PORT` - Port on host machine (default: 5000)
 - `BUILD_CONFIGURATION` - Build configuration (Debug/Release)
@@ -98,6 +107,7 @@ Available environment variables:
 ### Persistent Data
 
 The following directories are mounted as volumes for data persistence:
+
 - `./umbraco/Data` - SQLite database files
 - `./umbraco/Logs` - Application logs
 - `./umbraco/media` - Uploaded media files
@@ -125,6 +135,7 @@ docker-compose up -d --build
 ## CI/CD
 
 This project uses GitHub Actions for automated builds and deployments:
+
 - **On Pull Requests**: Builds and pushes Docker image tagged with `pr-<number>`
 - **On Main Branch**: Builds and pushes Docker image tagged with `latest` and commit SHA
 
@@ -141,6 +152,7 @@ Images are pushed to GitHub Container Registry (ghcr.io).
 ## Umbraco Backoffice Access
 
 After initial setup, access the Umbraco backoffice at:
+
 - URL: `http://localhost:5000/umbraco`
 - Follow the installation wizard to create an admin account
 
@@ -152,7 +164,7 @@ If port 5000 is already in use, change the `HOST_PORT` in `.env` or modify `dock
 
 ```yaml
 ports:
-  - "8080:8080"  # Change host port to 8080
+  - "8080:8080" # Change host port to 8080
 ```
 
 ### Permission Issues
