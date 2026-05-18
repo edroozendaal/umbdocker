@@ -5,11 +5,12 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/UmbDocker/Directory.Packages.props", "."]
-COPY ["src/UmbDocker/UmbDocker.csproj", "."]
-RUN dotnet restore "UmbDocker.csproj"
+COPY ["src/UmbDocker/Directory.Packages.props", "src/UmbDocker/"]
+COPY ["src/UmbDocker/UmbDocker.csproj", "src/UmbDocker/"]
+RUN dotnet restore "src/UmbDocker/UmbDocker.csproj"
+
 COPY . .
-WORKDIR "/src"
+WORKDIR "/src/src/UmbDocker"
 RUN dotnet build "UmbDocker.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
