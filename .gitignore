@@ -488,3 +488,6 @@ wwwroot/media/
 # Local configuration overrides
 appsettings.Local.json
 appsettings.*.Local.json
+/src/.cr/
+/src/UmbDocker/wwwroot/media
+/docker-build-log.txt
