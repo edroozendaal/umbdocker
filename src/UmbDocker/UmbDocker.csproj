@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -23,4 +23,11 @@
 		<RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
 	</ItemGroup>
 
+	<Target Name="ForceCleanExtraction" BeforeTargets="BeforeBuild" Condition="'$(CI)' == 'true'">
+		<Message Importance="high" Text="Forcing Clean Starter Kit asset extraction for CI environment..." />
+		<!-- This property forces NuGet content files to unpack manually during the CI build -->
+		<PropertyGroup>
+			<RegisterContentFilesCore>true</RegisterContentFilesCore>
+		</PropertyGroup>
+	</Target>
 </Project>
