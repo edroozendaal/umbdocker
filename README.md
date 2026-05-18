@@ -148,6 +148,15 @@ Images are pushed to GitHub Container Registry (ghcr.io).
 - **Database**: SQLite (file-based)
 - **Container**: Docker + Docker Compose
 - **CI/CD**: GitHub Actions
+- **Starter Kit**: [Clean](https://github.com/prjseal/Clean) v7.0.5
+
+## Known Issues and Fixes
+
+### Clean Package Views in Docker Builds
+
+The Clean starter kit uses NuGet contentFiles which are not automatically extracted in CI/CD environments. This has been fixed by setting the `CI=true` environment variable in the build process.
+
+For detailed information, see [.github/CLEAN_PACKAGE_FIX.md](.github/CLEAN_PACKAGE_FIX.md).
 
 ## Umbraco Backoffice Access
 

@@ -25,9 +25,8 @@
 
 	<Target Name="ForceCleanExtraction" BeforeTargets="BeforeBuild" Condition="'$(CI)' == 'true'">
 		<Message Importance="high" Text="Forcing Clean Starter Kit asset extraction for CI environment..." />
-		<!-- This property forces NuGet content files to unpack manually during the CI build -->
-		<PropertyGroup>
-			<RegisterContentFilesCore>true</RegisterContentFilesCore>
-		</PropertyGroup>
+		<Message Importance="high" Text="CI Environment Variable: $(CI)" />
+		<!-- Force NuGet to extract content files during CI builds -->
+		<Exec Command="dotnet restore --force" />
 	</Target>
 </Project>

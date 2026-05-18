@@ -61,6 +61,7 @@ jobs:
           no-cache-filters: build
           build-args: |
             BUILD_CONFIGURATION=Release
+            CI=true
 
       - name: Output image tags
         run: |
