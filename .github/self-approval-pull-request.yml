@@ -1,0 +1,8 @@
+self_approval_messages:
+  - "Automatically approved"
+
+from_author:
+  - "edroozendaal"
+
+apply_labels:
+  - "self-approved"
