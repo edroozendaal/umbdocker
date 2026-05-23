@@ -8,6 +8,9 @@
 		<RazorCompileOnBuild>false</RazorCompileOnBuild>
 		<RazorCompileOnPublish>false</RazorCompileOnPublish>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Include="wwwroot\assets\css\vkadeStyles.css" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Clean" />
