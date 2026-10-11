@@ -14,7 +14,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Clean" />
-		<PackageReference Include="Diplo.GodMode" />
 		<PackageReference Include="Umbraco.Cms" />
 		<PackageReference Include="Umbraco.Cms.DevelopmentMode.Backoffice" />
 		<PackageReference Include="Umbraco.Community.CSPManager" />
