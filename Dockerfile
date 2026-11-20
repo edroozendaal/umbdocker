@@ -22,5 +22,11 @@ RUN dotnet publish "UmbDocker.csproj" \
 
 FROM base AS final
 WORKDIR /app
-COPY --from=build /app/publish .
+COPY --from=build --chown=$APP_UID:$APP_UID /app/publish .
+
+ENV ASPNETCORE_ENVIRONMENT=Production \
+    ASPNETCORE_URLS=http://+:8080
+
+# Run as the unprivileged user built into the .NET images (not root)
+USER $APP_UID
 ENTRYPOINT ["dotnet", "UmbDocker.dll"]

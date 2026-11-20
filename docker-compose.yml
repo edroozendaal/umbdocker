@@ -17,9 +17,15 @@ services:
       # Media files
       - ./umbraco/media:/app/wwwroot/media
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT:-Development}
+      # Secret for signing image resize URLs; set in .env (never commit)
+      - Umbraco__CMS__Imaging__HMACSecretKey=${IMAGING_HMAC_SECRET:-}
       - ASPNETCORE_URLS=http://+:8080
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
     networks:
       - umbdocker-network
 
